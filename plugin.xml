@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="cordova-plugin-mixpanel"
+        version="5.0.0">
+
+    <name>Mixpanel</name>
+
+    <description>Mixpanel Cordova Plugin for iOS and Android (and Browser)</description>
+
+    <repo>https://github.com/samzilverberg/cordova-mixpanel-plugin.git</repo>
+    <author>Sam Zilverberg</author>
+    <keywords>mixpanel, cordova, phonegap, ionic, plugin, ios, android</keywords>
+
+    <js-module src="www/mixpanel.js" name="Mixpanel">
+        <clobbers target="mixpanel"/>
+    </js-module>
+
+
+    <platform name="android">
+
+        <!-- config.xml -->
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Mixpanel">
+                <param name="android-package" value="com.samz.cordova.mixpanel.MixpanelPlugin"/>
+            </feature>
+        </config-file>
+
+        <!-- Plugin files -->
+        <source-file src="src/android/MixpanelPlugin.java" target-dir="src/android"/>
+        <framework src="com.mixpanel.android:mixpanel-android:6.2.2"/>
+
+        <!-- AndroidManifest.xml -->
+        <!-- see https://github.com/mixpanel/mixpanel-android/blob/master/src/main/AndroidManifest.xml -->
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <meta-data
+                    android:name="com.mixpanel.android.MPConfig.EnableDebugLogging"
+                    android:value="true"/>
+        </config-file>
+    </platform>
+
+
+    <platform name="ios">
+
+        <!-- config.xml -->
+        <config-file target="config.xml" parent="/*">
+            <feature name="Mixpanel">
+                <param name="ios-package" value="MixpanelPlugin"/>
+                <param name="onload" value="true"/>
+            </feature>
+        </config-file>
+
+        <!-- Plugin files-->
+        <header-file src="src/ios/MixpanelPlugin.h"/>
+        <source-file src="src/ios/MixpanelPlugin.m"/>
+
+        <!-- Mixpanel sdk via source -->
+        <header-file src="src/ios/Mixpanel/AutomaticEvents.h" target-dir="Mixpanel"/>
+        <header-file src="src/ios/Mixpanel/MPDB.h" target-dir="Mixpanel"/>
+        <header-file src="src/ios/Mixpanel/MPFoundation.h" target-dir="Mixpanel"/>
+        <header-file src="src/ios/Mixpanel/MPJSONHander.h" target-dir="Mixpanel"/>
+        <header-file src="src/ios/Mixpanel/MPLogger.h" target-dir="Mixpanel"/>
+        <header-file src="src/ios/Mixpanel/MPNetwork.h" target-dir="Mixpanel"/>
+        <header-file src="src/ios/Mixpanel/MPNetworkPrivate.h" target-dir="Mixpanel"/>
+        <header-file src="src/ios/Mixpanel/Mixpanel.h" target-dir="Mixpanel"/>
+        <header-file src="src/ios/Mixpanel/MixpanelExceptionHandler.h" target-dir="Mixpanel"/>
+        <header-file src="src/ios/Mixpanel/MixpanelGroup.h" target-dir="Mixpanel"/>
+        <header-file src="src/ios/Mixpanel/MixpanelGroupPrivate.h" target-dir="Mixpanel"/>
+        <header-file src="src/ios/Mixpanel/MixpanelIdentity.h" target-dir="Mixpanel"/>
+        <header-file src="src/ios/Mixpanel/MixpanelPeople.h" target-dir="Mixpanel"/>
+        <header-file src="src/ios/Mixpanel/MixpanelPeoplePrivate.h" target-dir="Mixpanel"/>
+        <header-file src="src/ios/Mixpanel/MixpanelPersistence.h" target-dir="Mixpanel"/>
+        <header-file src="src/ios/Mixpanel/MixpanelPrivate.h" target-dir="Mixpanel"/>
+        <header-file src="src/ios/Mixpanel/MixpanelType.h" target-dir="Mixpanel"/>
+        <header-file src="src/ios/Mixpanel/MixpanelWatchProperties.h" target-dir="Mixpanel"/>
+        <header-file src="src/ios/Mixpanel/SessionMetadata.h" target-dir="Mixpanel"/>
+        <source-file src="src/ios/Mixpanel/AutomaticEvents.m" target-dir="Mixpanel"/>
+        <source-file src="src/ios/Mixpanel/MPDB.m" target-dir="Mixpanel"/>
+        <source-file src="src/ios/Mixpanel/MPJSONHandler.m" target-dir="Mixpanel"/>
+        <source-file src="src/ios/Mixpanel/MPLogger.m" target-dir="Mixpanel"/>
+        <source-file src="src/ios/Mixpanel/MPNetwork.m" target-dir="Mixpanel"/>
+        <source-file src="src/ios/Mixpanel/Mixpanel.m" target-dir="Mixpanel"/>
+        <source-file src="src/ios/Mixpanel/MixpanelExceptionHandler.m" target-dir="Mixpanel"/>
+        <source-file src="src/ios/Mixpanel/MixpanelGroup.m" target-dir="Mixpanel"/>
+        <source-file src="src/ios/Mixpanel/MixpanelIdentity.m" target-dir="Mixpanel"/>
+        <source-file src="src/ios/Mixpanel/MixpanelPeople.m" target-dir="Mixpanel"/>
+        <source-file src="src/ios/Mixpanel/MixpanelPersistence.m" target-dir="Mixpanel"/>
+        <source-file src="src/ios/Mixpanel/MixpanelType.m" target-dir="Mixpanel"/>
+        <source-file src="src/ios/Mixpanel/MixpanelWatchProperties.m" target-dir="Mixpanel"/>
+        <source-file src="src/ios/Mixpanel/SessionMetadata.m" target-dir="Mixpanel"/>
+        <resource-file src="src/ios/Mixpanel/LICENSE" target-dir="Mixpanel"/>
+        <resource-file src="src/ios/Mixpanel/app_extension_module.modulemap" target-dir="Mixpanel"/>
+        <resource-file src="src/ios/Mixpanel/ios.modulemap" target-dir="Mixpanel"/>
+        <resource-file src="src/ios/Mixpanel/macos.modulemap" target-dir="Mixpanel"/>
+        <resource-file src="src/ios/Mixpanel/tvos.modulemap" target-dir="Mixpanel"/>
+        <resource-file src="src/ios/Mixpanel/watchos.modulemap" target-dir="Mixpanel"/>
+
+
+        <!-- Mixpanel sdk requires frameworks -->
+        <!--see https://github.com/mixpanel/mixpanel-iphone/blob/master/Mixpanel.podspec-->
+        <framework src="UIKit.framework"/>
+        <framework src="Foundation.framework"/>
+        <framework src="SystemConfiguration.framework"/>
+        <framework src="CoreTelephony.framework"/>
+        <framework src="Accelerate.framework"/>
+        <framework src="CoreGraphics.framework"/>
+        <framework src="QuartzCore.framework"/>
+
+        <framework src="libicucore.dylib"/>
+
+        <!-- Additional for simulator -->
+        <framework src="CFNetwork.framework"/>
+        <framework src="Security.framework"/>
+    </platform>
+
+
+    <platform name="browser">
+
+        <config-file target="config.xml" parent="/*">
+            <feature name="Mixpanel">
+                <param name="browser-package" value="MixpanelPlugin"/>
+            </feature>
+        </config-file>
+
+        <js-module src="src/browser/MixpanelProxy.js" name="MixpanelProxy">
+            <runs/>
+        </js-module>
+
+        <asset src="src/browser/mixpanel-js-lib.js" target="plugins/cordova-plugin-mixpanel/src/browser/mixpanel-js-lib.js"/>
+    </platform>
+
+</plugin>

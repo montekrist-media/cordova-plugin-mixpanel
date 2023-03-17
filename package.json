@@ -1,0 +1,45 @@
+{
+  "name": "cordova-plugin-mixpanel",
+  "version": "5.0.0",
+  "description": "Mixpanel Cordova Plugin for iOS, Android and Browser Platforms",
+  "author": "Sam Zilverberg <samzilverberg@gmail.com>",
+  "license": "MIT",
+  "cordova": {
+    "id": "cordova-plugin-mixpanel",
+    "platforms": [
+      "android",
+      "ios",
+      "browser"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samzilverberg/cordova-mixpanel-plugin.git"
+  },
+  "homepage": "https://github.com/samzilverberg/cordova-mixpanel-plugin#readme",
+  "keywords": [
+    "mixpanel",
+    "cordova",
+    "phonegap",
+    "ionic",
+    "plugin",
+    "ios",
+    "android",
+    "browser",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "engines": {
+    "cordovaDependencies": {
+      "<3.0.0": {
+        "cordova": ">=5.0.0"
+      },
+      "<5.0.0": {
+        "cordova": ">=6.4.0",
+        "cordova-ios": ">=4.3.0",
+        "cordova-android": ">=6.1.0"
+      }
+    }
+  }
+}
